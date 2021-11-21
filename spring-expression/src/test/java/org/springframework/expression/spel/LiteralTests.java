@@ -122,6 +122,11 @@ public class LiteralTests extends AbstractExpressionTests {
 	}
 
 	@Test
+	public void testLiteralBytes09() {
+		evaluate("b\"\\x1f\\x2a\\x2d\"", new String(new byte[] {31, 42, 45}), String.class);
+	}
+
+	@Test
 	public void testHexIntLiteral01() {
 		evaluate("0x7FFFF", "524287", Integer.class);
 		evaluate("0x7FFFFL", 524287L, Long.class);
