@@ -350,27 +350,23 @@ class Tokenizer {
 			else if (ch == '\\') {
 				char c = this.charsToProcess[++this.pos];
 				switch (c) {
-					case 'x', 'X':
+					case 'x', 'X' -> {
 						int v = 0;
 						for (int i = 0; i < 2; i++) {
 							this.pos++;
 							int x = 0;
 							if (this.charsToProcess[this.pos] >= '0' && this.charsToProcess[this.pos] <= '9') {
 								x = this.charsToProcess[this.pos] - '0';
-							}
-							else if (this.charsToProcess[this.pos] >= 'a' && this.charsToProcess[this.pos] <= 'f') {
+							} else if (this.charsToProcess[this.pos] >= 'a' && this.charsToProcess[this.pos] <= 'f') {
 								x = this.charsToProcess[this.pos] - 'a' + 10;
-							}
-							else if (this.charsToProcess[this.pos] >= 'A' && this.charsToProcess[this.pos] <= 'F') {
+							} else if (this.charsToProcess[this.pos] >= 'A' && this.charsToProcess[this.pos] <= 'F') {
 								x = this.charsToProcess[this.pos] - 'A' + 10;
 							}
 							v = v << 4 | x;
 						}
 						bytesList.add((char) v);
-						break;
-					case '"', '\'':
-						bytesList.add(c);
-						break;
+					}
+					case '"', '\'' -> bytesList.add(c);
 				}
 			}
 			else {
