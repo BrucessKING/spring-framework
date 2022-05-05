@@ -20,6 +20,8 @@ import org.springframework.asm.MethodVisitor;
 import org.springframework.expression.TypedValue;
 import org.springframework.expression.spel.CodeFlow;
 
+import java.util.Arrays;
+
 /**
  * Expression language AST node that represents a bytes literal.
  *
@@ -29,8 +31,8 @@ public class BytesLiteral extends Literal{
 
 	private final TypedValue value;
 
-	public BytesLiteral(String payload, int startPos, int endPos, String value) {
-		super(payload, startPos, endPos);
+	public BytesLiteral(Byte[] payload, int startPos, int endPos, String value) {
+		super(Arrays.toString(payload), startPos, endPos);
 		this.value = new TypedValue(payload);
 		this.exitTypeDescriptor = "LB";
 	}

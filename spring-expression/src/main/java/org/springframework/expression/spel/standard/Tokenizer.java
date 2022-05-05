@@ -367,8 +367,10 @@ class Tokenizer {
 							v = v << 4 | x;
 						}
 						bytesList.add((char) v);
+						break;
 					case '"', '\'':
 						bytesList.add(c);
+						break;
 				}
 			}
 			else {

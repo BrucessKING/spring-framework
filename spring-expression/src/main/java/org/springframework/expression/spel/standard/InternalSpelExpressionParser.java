@@ -16,6 +16,7 @@
 
 package org.springframework.expression.spel.standard;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -866,7 +867,12 @@ class InternalSpelExpressionParser extends TemplateAwareExpressionParser {
 			push(new StringLiteral(t.stringValue(), t.startPos, t.endPos, t.stringValue()));
 		}
 		else if (t.kind == TokenKind.LITERAL_BYTES) {
-			push(new BytesLiteral(t.stringValue(), t.startPos, t.endPos, t.stringValue()));
+			byte[] bytes = t.stringValue().getBytes(StandardCharsets.UTF_8);
+			Byte[] bytes1 = new Byte[t.stringValue().length()];
+			for (int i = 0; i < bytes.length; i++) {
+				bytes1[i] = bytes[i];
+			}
+			push(new BytesLiteral(bytes1, t.startPos, t.endPos, t.stringValue()));
 		}
 		else {
 			return false;
