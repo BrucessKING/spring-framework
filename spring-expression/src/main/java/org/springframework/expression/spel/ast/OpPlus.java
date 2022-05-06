@@ -133,6 +133,13 @@ public class OpPlus extends Operator {
 					(leftOperand == null ? "null" : convertTypedValueToString(operandOneValue, state)) + rightOperand);
 		}
 
+		if (leftOperand instanceof Byte[] leftBytes && rightOperand instanceof Byte[] rightBytes) {
+			Byte[] result = new Byte[leftBytes.length + rightBytes.length];
+			System.arraycopy(leftBytes, 0, result, 0, leftBytes.length);
+			System.arraycopy(rightBytes, 0, result, leftBytes.length, rightBytes.length);
+			return new TypedValue(result);
+		}
+
 		return state.operate(Operation.ADD, leftOperand, rightOperand);
 	}
 

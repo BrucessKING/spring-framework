@@ -867,12 +867,11 @@ class InternalSpelExpressionParser extends TemplateAwareExpressionParser {
 			push(new StringLiteral(t.stringValue(), t.startPos, t.endPos, t.stringValue()));
 		}
 		else if (t.kind == TokenKind.LITERAL_BYTES) {
-			byte[] bytes = t.stringValue().getBytes(StandardCharsets.UTF_8);
-			Byte[] bytes1 = new Byte[t.stringValue().length()];
-			for (int i = 0; i < bytes.length; i++) {
-				bytes1[i] = bytes[i];
+			Byte[] bytes = new Byte[t.stringValue().length()];
+			for (int i = 0; i < t.stringValue().length(); i++) {
+				bytes[i] = (byte) t.stringValue().charAt(i);
 			}
-			push(new BytesLiteral(bytes1, t.startPos, t.endPos, t.stringValue()));
+			push(new BytesLiteral(bytes, t.startPos, t.endPos, t.stringValue()));
 		}
 		else {
 			return false;
