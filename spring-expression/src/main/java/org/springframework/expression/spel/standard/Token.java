@@ -84,6 +84,9 @@ class Token {
 		return new Token(TokenKind.BETWEEN, this.startPos, this.endPos);
 	}
 
+	public Token asInToken() {
+		return new Token(TokenKind.IN, this.startPos, this.endPos);
+	}
 
 	@Override
 	public String toString() {

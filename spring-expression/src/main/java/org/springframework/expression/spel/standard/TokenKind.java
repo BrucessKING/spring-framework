@@ -104,6 +104,8 @@ enum TokenKind {
 
 	BETWEEN("between"),
 
+	IN("in"),
+
 	SELECT("?["),
 
 	POWER("^"),
